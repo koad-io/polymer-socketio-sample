@@ -1,0 +1,16 @@
+{
+  "name": "chat-bot-server",
+  "version": "1.0.0",
+  "description": "Simple Chat Bot Server",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karl Moad",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.7.2",
+    "socketio-jwt": "^4.5.0"
+  }
+}
