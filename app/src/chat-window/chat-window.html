@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer-socketio/polymer-socketio-binding.html">
+
+<dom-module id="chat-window">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <polymer-socketio-binding receive="received" output="{{response}}"></polymer-socketio-binding>
+        <polymer-socketio-binding broadcast="send" input="{{message}}"></polymer-socketio-binding>
+    </template>
+    <script>
+        Polymer({
+            is: 'chat-window',
+            properties:{
+                status: {
+                    type: String,
+                },
+                connected: {
+                    type: Boolean,
+                },
+                error:{
+                    type: Object,
+                },
+                message:{
+                    type: Object,
+                    notify: true
+                },
+                response:{
+                    type: Object,
+                    observer: '_onResponse'
+                },
+                dialog:{
+                    type: Object,
+                    notify: true,
+                }
+            },
+
+            _onResponse: function(){
+
+            },
+
+            ready: function(){
+
+            }
+        });
+    </script>
+</dom-module>

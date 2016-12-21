@@ -23,14 +23,29 @@ server.listen(port, function () {
 io.on('connection', function(socket){
 
     console.log("connection established");
-    socket.emit("Hello and welcome, how may I assist you today?");
-
+    socket.emit("init", {user: "admin", msg: "Hello and welcome, how may I assist you today?"});
+    socket.nummsg = 1;
 
 
     socket.on('msg', function(data){
 
         console.log("Message Received: %s", JSON.stringify(data));
 
-        socket.emit('resp', "Im sorry, at this time I can not help you with this.");
+        switch(socket.nummsg % 5){
+            case 0:
+            case 1:
+                socket.emit("resp",{user: "admin", msg: "That answer remains the same?"});
+                break;
+            case 2:
+                socket.emit("resp",{user: "admin", msg: "You really can't take a hint huh?"});
+                break;
+            case 3:
+                socket.emit("resp",{user: "admin", msg: "Don't you have something better to be doing?"});
+                break;
+            default:
+                socket.emit("resp",{user: "admin", msg: "I am sorry, I can not help you with this at this time."});
+                break;
+        }
+        socket.nummsg += 1;
     });
 });

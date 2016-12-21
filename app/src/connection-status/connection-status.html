@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../icons/icons.html">
+
+<dom-module id="connection-status">
+    <template>
+        <style>
+            <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <iron-icon id="conn-stat" icon="disconnected"></iron-icon>
+        <paper-tooltip id="conn-tip" for="conn-stat" position="left">{{status}}</paper-tooltip>
+    </template>
+    <script>
+        Polymer({
+            is: 'connection-status',
+
+            properties: {
+                status: {
+                    type: String,
+                },
+                connected: {
+                    type: Boolean,
+                    observer: '_onConnectionChange'
+                },
+            },
+            _onConnectionChnage: function(){
+                this.$.conn-stat.icon = "connected";
+
+            },
+            ready: function(){
+
+            }
+        });
+    </script>
+</dom-module>

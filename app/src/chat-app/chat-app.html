@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer-socketio/polymer-socketio.html">
+<link rel="import" href="../../bower_components/polymer-socketio/polymer-socketio-event.html">
+<link rel="import" href="../chat-window/chat-window.html">
+
+<dom-module id="chat-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <polymer-socketio url="" connected="{{connected}}" status="{{status}}" error="{{err}}">
+      <polymer-socketio-event id="pseInit" receive="init" boradcast="received" receiver></polymer-socketio-event>
+      <polymer-socketio-event id="pseResp" receive="resp" broadcast="received" receiver></polymer-socketio-event>
+      <polymer-socketio-event id="pseSend" receive="send" broadcast="msg" emitter></polymer-socketio-event>
+    </polymer-socketio>
+
+  </template>
+  <script>
+    Polymer({
+
+      is: 'chat-app',
+
+      ready: function(){
+
+      }
+    });
+  </script>
+</dom-module>

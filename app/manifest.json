@@ -1,0 +1,7 @@
+{
+  "name": "chat-app",
+  "short_name": "chat-app",
+  "description": "Sample Chat Application in Polymer",
+  "start_url": "/",
+  "display": "standalone"
+}
