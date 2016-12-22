@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html">
+<link rel="import" href="../chat-dialog-item/chat-dialog-item.html">
+
+<dom-module id="chat-dialog-list">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            #dialoglist {
+                overflow: auto;
+            }
+        </style>
+
+        <div id="dialoglist">
+
+
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'chat-dialog-list',
+            properties: {
+                dialog: {
+                    type: Array,
+                    observer: '_onDialogChange'
+                }
+            },
+
+            _onDialogChange: function(){
+
+
+
+
+            }
+        });
+    </script>
+</dom-module>

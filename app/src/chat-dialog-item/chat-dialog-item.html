@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../icons/icons.html">
+
+<dom-module id="chat-dialog-item">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            .item {
+                border-bottom: 1px solid #ccc;
+                background-color: white;
+                padding: 20px;
+                width: 200%;
+            }
+
+        </style>
+    </template>
+
+    <paper-icon-item>
+        <div class="{{avatarClass}}" item-icon>{{avatarContent}}</div>
+        <paper-item-body two-line>
+            <div class="message">{{item.msg}}</div>
+        </paper-item-body>
+    </paper-icon-item>
+
+    <script>
+        Polymer({
+            is: 'chat-dialog-item',
+            properties: {
+                item: {
+                    type: Object
+                },
+                avatarClass: {
+                    type: String,
+                    computed: '_computeAvatarClass(item)'
+                },
+                avatarContent: {
+                    type: String
+                    computed: '_computeAvatarContent(item)'
+                }
+            },
+            _computeAvatarClass: function(item){
+                if(item.user.toLowerCase() === 'admin'){
+                    return "avatar blue"
+                }else{
+                    return "avatar"
+                }
+            },
+            _computeAvatarContent: function(item){
+                return item.user.substring(0,1).toUpperCase();
+            }
+        });
+    </script>
+</dom-module>
