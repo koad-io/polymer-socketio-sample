@@ -10,17 +10,30 @@
         display: block;
       }
     </style>
-    <polymer-socketio url="" connected="{{connected}}" status="{{status}}" error="{{err}}">
+    <polymer-socketio url="" connected="{{connected}}" status="{{status}}" error="{{error}}">
       <polymer-socketio-event id="pseInit" receive="init" boradcast="received" receiver></polymer-socketio-event>
       <polymer-socketio-event id="pseResp" receive="resp" broadcast="received" receiver></polymer-socketio-event>
       <polymer-socketio-event id="pseSend" receive="send" broadcast="msg" emitter></polymer-socketio-event>
     </polymer-socketio>
+
+    <chat-window connected="{{connected}}" status="{{status}}" error="{{error}}"></chat-window>
 
   </template>
   <script>
     Polymer({
 
       is: 'chat-app',
+      properties:{
+          connected: {
+              type: Boolean
+          },
+          status: {
+              type: String
+          },
+          error:{
+              type: Object
+          }
+      },
 
       ready: function(){
 

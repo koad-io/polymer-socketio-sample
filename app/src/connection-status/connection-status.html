@@ -27,8 +27,9 @@
                     observer: '_onConnectionChange'
                 },
             },
-            _onConnectionChnage: function(){
-                this.$.conn-stat.icon = "connected";
+            _onConnectionChange: function(){
+                if(this.connected) this.$.conn-stat.icon = "connected";
+                else this.$.conn-stat.icon = "disconnected";
 
             },
             ready: function(){
