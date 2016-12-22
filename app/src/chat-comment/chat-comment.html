@@ -6,12 +6,13 @@
 <dom-module id="chat-comment">
     <template>
         <style>
-
+            :host {
+                display: block;
+            }
         </style>
 
         <paper-input id="txtComment" label="Say Something!"></paper-input>
         <paper-fab id="btnSend" icon="send" on-tap="_send"></paper-fab>
-
     </template>
     <script>
         Polymer({
