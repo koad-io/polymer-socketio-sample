@@ -18,11 +18,10 @@
             }
             .flexfill {
                 @apply(--layout-flex);
-                overflow: auto;
             }
 
         </style>
-        <polymer-socketio-binding receive="received" output="{{response}}"></polymer-socketio-binding>
+        <polymer-socketio-binding receive="received" output="{{rcvmsg}}"></polymer-socketio-binding>
         <polymer-socketio-binding broadcast="send" input="{{message}}"></polymer-socketio-binding>
 
         <div class="container layout">
@@ -52,18 +51,25 @@
                     type: Object,
                     notify: true
                 },
-                response:{
+                rcvmsg:{
                     type: Object,
                     observer: '_onResponse'
                 },
                 dialog:{
-                    type: Object,
+                    type: Array,
+                    value:[],
                     notify: true,
                 }
             },
 
             _onResponse: function(){
+                this.push('dialog', this.getRcvmsg());
 
+            },
+
+            _newInput: function(){
+                var msg = {user:"JDoe", msg: this.getInputval()};
+                this.push('dialog', msg);
             },
 
             ready: function(){

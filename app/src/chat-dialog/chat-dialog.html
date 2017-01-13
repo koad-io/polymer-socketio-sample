@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 
-</body>
-</html>
+<dom-module id="chat-dialog">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            #dialog-list {
+                @apply(--layout-vertical);
+                overflow: auto;
+            }
+
+            #dialog-list > paper-card {
+                box-sizing: border-box;
+                margin: 4px;
+                flex: 0 0 auto
+            }
+
+        </style>
+
+        <div id="dialog-list">
+            <template is="dom-repeat" items="{{dialog}}">
+                <paper-card heading="item.msg" class="[[_getclass(item.user)]]"></paper-card>
+            </template>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'chat-dialog',
+            _getClass: function(user){
+                if(user.toLowerCase() === "admin"){
+                    return "cyan";
+                }else{
+                    return "amber";
+                }
+            }
+        });
+    </script>
+</dom-module>
