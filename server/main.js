@@ -34,7 +34,7 @@ io.on('connection', function(socket){
         switch(socket.nummsg % 5){
             case 0:
             case 1:
-                socket.emit("resp",{user: "admin", msg: "That answer remains the same?"});
+                socket.emit("resp",{user: "admin", msg: "The answer remains the same."});
                 break;
             case 2:
                 socket.emit("resp",{user: "admin", msg: "You really can't take a hint huh?"});

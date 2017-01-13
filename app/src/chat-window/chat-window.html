@@ -1,9 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/polymer-socketio/polymer-socketio-binding.html">
-<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../connection-status/connection-status.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../chat-header/chat-header.html">
+<link rel="import" href="../chat-dialog/chat-dialog.html">
+<link rel="import" href="../chat-input/chat-input.html">
 
 <dom-module id="chat-window">
     <template>
@@ -11,23 +12,24 @@
             :host {
                 display: block;
             }
-        </style>
+            .layout {
+                @apply(--layout-vertical);
+                height: 100%;
+            }
+            .flexfill {
+                @apply(--layout-flex);
+                overflow: auto;
+            }
 
+        </style>
         <polymer-socketio-binding receive="received" output="{{response}}"></polymer-socketio-binding>
         <polymer-socketio-binding broadcast="send" input="{{message}}"></polymer-socketio-binding>
 
-        <app-header-layout fullbleed>
-            <app-header fixed>
-                <app-toolbar>
-                    <div main-title>Chat Sample</div>
-                    <connection-status status="{{status}}" connected="{{connected}}"></connection-status>
-                </app-toolbar>
-            </app-header>
-            <div>
-                <!-- Main Content -->
-            </div>
-
-        </app-header-layout>
+        <div class="container layout">
+            <chat-header></chat-header>
+            <chat-dialog class="flexfill" dialog="{{dialog}}"></chat-dialog>
+            <chat-input message="{{inputval}}"></chat-input>
+        </div>
     </template>
     <script>
         Polymer({
@@ -41,6 +43,10 @@
                 },
                 error:{
                     type: Object,
+                },
+                inputval: {
+                    type: String,
+                    observer: '_newInput'
                 },
                 message:{
                     type: Object,

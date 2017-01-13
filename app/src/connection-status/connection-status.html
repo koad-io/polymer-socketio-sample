@@ -10,8 +10,8 @@
                 display: block;
             }
         </style>
-        <iron-icon id="conn-stat" icon="disconnected"></iron-icon>
-        <paper-tooltip id="conn-tip" for="conn-stat" position="left">{{status}}</paper-tooltip>
+        <iron-icon id="indicator" icon="disconnected"></iron-icon>
+        <paper-tooltip id="tip" for="conn-stat" position="left">{{status}}</paper-tooltip>
     </template>
     <script>
         Polymer({
@@ -27,9 +27,11 @@
                 },
             },
             _onConnectionChange: function(){
-                if(this.connected) this.$.conn-stat.icon = "connected";
-                else this.$.conn-stat.icon = "disconnected";
-
+                if(this.connected) {
+                    this.$.indicator.icon = "connected";
+                }else{
+                    this.$.indicator.icon = "disconnected";
+                }
             },
             ready: function(){
 
